@@ -15,7 +15,7 @@ conn = mysql.connector.connect(
     host="localhost",
     user="root",
     password="Paroli1!",
-    database="crmdata"
+    database="MarketPlaceSoftwareDB"
 )
 cursor = conn.cursor()
 

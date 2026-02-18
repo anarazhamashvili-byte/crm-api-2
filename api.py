@@ -1,13 +1,14 @@
 from flask import Flask, jsonify, request
 import mysql.connector
+import os
 
 app = Flask(__name__)
 
 # MySQL credentials
 DB_HOST = "127.0.0.1"
-DB_USER = "crm_user"
+DB_USER = "marketplace_software_user"
 DB_PASSWORD = "ChangeMe_Strong1!"
-DB_NAME = "crmdata"
+DB_NAME = "MarketPlaceSoftwareDB"
 
 # 🔒 Hardcoded API key (you can also load from env vars)
 API_KEY = "a3f9b8c2d1e44f7a9c0d5e6f8a7b2c1d9e0f3a4b5c6d7e8f9a0b1c2d3e4f5a6b"
@@ -69,4 +70,5 @@ def orders_endpoint():
     return jsonify(result), 200
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.getenv("PORT", "5000"))
+    app.run(host="0.0.0.0", port=port)

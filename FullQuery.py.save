@@ -16,9 +16,9 @@ sheet_invoices = client.open_by_key("1qVFFf9f5imgRUqMNV14lnBjlPgB36WJqakEOjAu6a5
 # MySQL setup
 conn = mysql.connector.connect(
     host="localhost",
-    user="crm_user",
+    user="marketplace_software_user",
     password="ChangeMe_Strong1!",
-    database="crmdata"
+    database="MarketPlaceSoftwareDB"
 )
 cursor = conn.cursor()
 

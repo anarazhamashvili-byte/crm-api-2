@@ -1,0 +1,10 @@
+[Unit]
+Description=Run CRM sync every 5 minutes
+
+[Timer]
+OnBootSec=1min
+OnUnitActiveSec=5min
+Unit=crm_sync.service
+
+[Install]
+WantedBy=timers.target

@@ -3,6 +3,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 import mysql.connector
 import time
 import datetime
+import os
 
 # Google Sheets setup
 scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
@@ -14,9 +15,9 @@ sheet_invoices = client.open_by_key("1qVFFf9f5imgRUqMNV14lnBjlPgB36WJqakEOjAu6a5
 # MySQL setup
 conn = mysql.connector.connect(
     host="localhost",
-    user="crm_user",
+    user="marketplace_software_user",
     password="ChangeMe_Strong1!",
-    database="crmdata"
+    database="MarketPlaceSoftwareDB"
 )
 cursor = conn.cursor()
 
@@ -178,8 +179,12 @@ def refresh_data():
     conn.commit()
     print(f"✅ Data refreshed at {datetime.datetime.now().strftime('%H:%M:%S')} | Inserted: {inserted} rows | Skipped: {skipped} rows")
 
-# Refresh every 5 minutes
 if __name__ == "__main__":
-    while True:
+    run_once = os.getenv("RUN_ONCE") == "1"
+    if run_once:
         refresh_data()
-        time.sleep(300)
+    else:
+        # Refresh every 5 minutes
+        while True:
+            refresh_data()
+            time.sleep(300)
