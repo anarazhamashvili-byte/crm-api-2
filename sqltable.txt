@@ -32,3 +32,11 @@ CREATE TABLE orders (
     failed_delivery_comment TEXT,
     resend_date DATE
 );
+USE MarketPlaceSoftwareDB;
+
+ALTER TABLE orders
+  ADD COLUMN branch VARCHAR(200) NULL,
+  ADD COLUMN comment_1 TEXT NULL,
+  ADD COLUMN issue_date DATE NULL,
+  ADD COLUMN status VARCHAR(100) NULL,
+  ADD COLUMN source_sheet VARCHAR(200) NULL;

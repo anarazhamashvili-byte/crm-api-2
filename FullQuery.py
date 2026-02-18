@@ -55,7 +55,7 @@ def insert_row(row, source):
             ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                       %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
                       %s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
-                      %s, %s, %s, %s, %s)
+                      %s, %s, %s, %s, %s, %s)
         """, (
             row.get('order_date'), row.get('order_number'), row.get('department'), row.get('employee'),
             row.get('payment_method'), row.get('customer_name'), row.get('phone_number'), row.get('personal_id'),
