@@ -104,7 +104,10 @@ def refresh_data():
     ]
 
     try:
-        data_orders = sheet_orders.get_all_records(expected_headers=headers_orders)
+        data_orders = sheet_orders.get_all_records(
+            expected_headers=headers_orders,
+            value_render_option="FORMATTED_VALUE"
+        )
         for row in data_orders:
             mapped = {
                 'order_date': safe_date(row['თარიღი']),
@@ -155,7 +158,10 @@ def refresh_data():
     ]
 
     try:
-        data_invoices = sheet_invoices.get_all_records(expected_headers=headers_invoices)
+        data_invoices = sheet_invoices.get_all_records(
+            expected_headers=headers_invoices,
+            value_render_option="FORMATTED_VALUE"
+        )
         for row in data_invoices:
             mapped = {
                 'order_date': safe_date(row['თარიღი']),

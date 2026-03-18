@@ -47,7 +47,10 @@ def refresh_data():
     skipped = 0
 
     try:
-        data = sheet.get_all_records(expected_headers=expected_headers)
+        data = sheet.get_all_records(
+            expected_headers=expected_headers,
+            value_render_option="FORMATTED_VALUE"
+        )
     except Exception as e:
         print(f"❌ Error reading sheet: {e}")
         return

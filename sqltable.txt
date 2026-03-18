@@ -35,7 +35,7 @@ CREATE TABLE orders (
 USE MarketPlaceSoftwareDB;
 
 ALTER TABLE orders
-  ADD COLUMN branch VARCHAR(200) NULL,
+  ADD COLUMN branch VARCHAR(100) NULL,
   ADD COLUMN comment_1 TEXT NULL,
   ADD COLUMN issue_date DATE NULL,
   ADD COLUMN status VARCHAR(100) NULL,
