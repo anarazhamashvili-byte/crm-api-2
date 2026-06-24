@@ -150,11 +150,11 @@ def refresh_data():
     except Exception as e:
         print(f"❌ Error reading orders sheet: {e}")
 
-# Sheet 2: Invoices
+    # Sheet 2: Invoices
     headers_invoices = [
-        'თარიღი', 'ინვოისი #', 'მომხმარებელი', 'პირადი ნომერი',
-        'ფილიალი', 'პროდუქტი', 'კომენტარი 1',
-        'გაცემის თარიღი', 'სტატუსი'
+        'თანამშრომელი', 'თარიღი', 'ინვოისი #', 'ორდერის ნომერი', 'გადახდის მეთოდი',
+        'მომხმარებელი', 'პირადი ნომერი', 'ფილიალი', 'პროდუქტი', 'რაოდენობა', 'ფასი',
+        'კომენტარი 1', 'სერიული ნომერი', 'გაცემის თარიღი', 'სტატუსი', 'კომენტარი 2'
     ]
 
     try:
@@ -163,14 +163,27 @@ def refresh_data():
             value_render_option="FORMATTED_VALUE"
         )
         for row in data_invoices:
+            order_number = safe_str(row['ორდერის ნომერი'], 30) or safe_str(row['ინვოისი #'], 30)
+            comment_1 = safe_text(row['კომენტარი 1'])
+            comment_2 = safe_text(row['კომენტარი 2'])
+            if comment_1 and comment_2:
+                comment_1 = f"{comment_1} | {comment_2}"
+            elif comment_2:
+                comment_1 = comment_2
+
             mapped = {
                 'order_date': safe_date(row['თარიღი']),
-                'order_number': safe_str(row['ინვოისი #'], 30),
+                'order_number': order_number,
+                'employee': safe_str(row['თანამშრომელი'], 100),
+                'payment_method': safe_str(row['გადახდის მეთოდი'], 100),
                 'customer_name': safe_str(row['მომხმარებელი'], 150),
                 'personal_id': safe_str(row['პირადი ნომერი'], 30),
                 'branch': safe_str(row['ფილიალი'], 100),
                 'product_name': safe_str(row['პროდუქტი'], 255),
-                'comment_1': safe_text(row['კომენტარი 1']),
+                'quantity': safe_str(row['რაოდენობა'], 20),
+                'revenue': safe_str(row['ფასი'], 50),
+                'tracking_code': safe_text(row['სერიული ნომერი']),
+                'comment_1': comment_1,
                 'issue_date': safe_date(row['გაცემის თარიღი']),
                 'status': safe_str(row['სტატუსი'], 100),
                 'source_sheet': 'invoices'
