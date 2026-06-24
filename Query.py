@@ -21,7 +21,7 @@ cursor = conn.cursor()
 
 def refresh_data():
     expected_headers = [
-        'თარიღი', 'ორდერ #', 'დეპარტამენტი', 'თანამშრომელი',
+        'ვ', 'ორდერ #', 'დეპარტამენტი', 'თანამშრომელი',
         'გადახდის მეთოდი - For E-Commerce', 'მომხმარებელი/კომპანია',
         'ტელ. ნომერი', 'პირადი ნომერი/ს.კ', 'ნომენკლატურა', 'რაოდ-ბა',
         ' შემოსავალი ₾', 'თანამონაწილოება - For E-Commerce',
@@ -92,7 +92,7 @@ def refresh_data():
             order_deadline_fx = safe_str(row['Order Deadline Untill Delivery FX'], 50)
 
             # Existing fields
-            order_date = safe_date(row['თარიღი'])
+            order_date = safe_date(row['ვ'])
             order_number = safe_str(row['ორდერ #'], 30)
             customer_name = safe_str(row['მომხმარებელი/კომპანია'], 150)
             phone_number = safe_str(row['ტელ. ნომერი'], 50)

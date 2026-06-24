@@ -81,7 +81,7 @@ def refresh_data():
 
     # Sheet 1: Orders
     headers_orders = [
-        'თარიღი', 'ორდერ #', 'დეპარტამენტი', 'თანამშრომელი',
+        'ვ', 'ორდერ #', 'დეპარტამენტი', 'თანამშრომელი',
         'გადახდის მეთოდი - For E-Commerce', 'მომხმარებელი/კომპანია',
         'ტელ. ნომერი', 'პირადი ნომერი/ს.კ', 'ნომენკლატურა', 'რაოდ-ბა',
         ' შემოსავალი ₾', 'თანამონაწილოება - For E-Commerce',
@@ -110,7 +110,7 @@ def refresh_data():
         )
         for row in data_orders:
             mapped = {
-                'order_date': safe_date(row['თარიღი']),
+                'order_date': safe_date(row['ვ']),
                 'order_number': safe_str(row['ორდერ #'], 30),
                 'department': safe_str(row['დეპარტამენტი'], 100),
                 'employee': safe_str(row['თანამშრომელი'], 100),
